@@ -22,4 +22,5 @@ Zoom Clone using NodeJs, WebRTC and Websockets
   * 라우팅, 미들웨어 지원, 템플릿 엔진 통합 등 다양한 기능을 통해 웹 서버 개발을 손쉽게 할 수 있음
 * npm i pug
   *  HTML을 보다 간결하게 작성할 수 있게 해주는 템플릿 엔진
-  * 
+* npm i ws
+  * nodejs WebSocket implementation
