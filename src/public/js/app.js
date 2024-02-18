@@ -1,3 +1,5 @@
+const messageList = document.querySelector("ul");
+const messageForm = document.querySelector("form");
 // 웹소켓 연결 및 현재 host 정보.
 // websocket은 http처럼 프로토콜이기 때문에 scheme을 ws로 연결해야함.
 const socket = new WebSocket(`ws://${window.location.host}`);
@@ -20,5 +22,15 @@ socket.addEventListener("close", ()=>{
 
 // 서버에게 데이터 보내기
 setTimeout(()=> {
+  // 연결된 소켓에 데이터 보내기
   socket.send("hello from the browser");
 },10000);
+
+
+// form을 이용하여 서버에 input value 보내기
+messageForm.addEventListener("submit", (event)=>{
+  event.preventDefault();
+  const input = messageForm.querySelector("input");
+  socket.send(input.value);
+  input.value = "";
+});

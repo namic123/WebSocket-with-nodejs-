@@ -25,14 +25,16 @@ const wss = new WebSocket.Server({server});
 wss.on("connection", (socket) => {
   // 클라이언트 브라우저에 연결되어 있음을 알림
   console.log("Connected to Browser : 연결완료");
+
   // 클라이언트 브라우저가 닫힌 것을 감지
   socket.on("close",()=> console.log("Disconnected from the Browser : 클라이언트가 종료했습니다."));
   // 클라이언트에서 보낸 message를 감지
   socket.on("message", message => {
     // message를 utf-8 형식으로 변환
     const translatedMessageData = message.toString('utf8');
-    console.log(translatedMessageData);
+      // 연결된 소켓에 데이터 보내기
+      socket.send(translatedMessageData);
   })
-  socket.send("hello!!");
+
 })
 server.listen(3000, handleListen);
